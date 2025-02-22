@@ -3,11 +3,11 @@ name: dbt CI/CD
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
-
+      - master
+workflow_dispatch:
 jobs:
   dbt-build-test:
     runs-on: ubuntu-latest
