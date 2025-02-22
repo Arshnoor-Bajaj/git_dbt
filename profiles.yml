@@ -1,13 +1,21 @@
-git_dbt:
+DBT_ALL_AGAIN:
+  target: dev
   outputs:
     dev:
-      account: zp00314.central-india.azure
-      database: AIRBNB
-      password: "Datafortune1@AB1"
-      role: ACCOUNTADMIN
-      schema: RAW
-      threads: 1
       type: snowflake
-      user: ABTRYAGAIN
-      warehouse: COMPUTE_WH
-  target: dev
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role: "{{ env_var('SNOWFLAKE_ROLE', 'DEV_ROLE') }}"
+      database: "{{ env_var('SNOWFLAKE_DEV_DB') }}"
+      warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE') }}"
+      schema: "{{ env_var('SNOWFLAKE_DEV_SCHEMA', 'public') }}"
+    prod:
+      type: snowflake
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role: "{{ env_var('SNOWFLAKE_ROLE', 'PROD_ROLE') }}"
+      database: "{{ env_var('SNOWFLAKE_PROD_DB') }}"
+      warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE') }}"
+      schema: "{{ env_var('SNOWFLAKE_PROD_SCHEMA', 'public') }}"
