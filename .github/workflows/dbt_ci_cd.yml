@@ -25,6 +25,11 @@ jobs:
         run: |
           pip install dbt-snowflake
 
+      - name: Create profiles.yml
+        run: |
+          mkdir -p ~/.dbt
+          echo "${{ secrets.PROFILES_YML }}" > ~/.dbt/profiles.yml
+
       - name: Set up Snowflake credentials
         run: |
           echo "SNOWFLAKE_ACCOUNT=${{ secrets.SNOWFLAKE_ACCOUNT }}" >> $GITHUB_ENV
@@ -58,6 +63,11 @@ jobs:
       - name: Install dbt and dependencies
         run: |
           pip install dbt-snowflake
+
+      - name: Create profiles.yml
+        run: |
+          mkdir -p ~/.dbt
+          echo "${{ secrets.PROFILES_YML }}" > ~/.dbt/profiles.yml
 
       - name: Set up Snowflake credentials
         run: |
