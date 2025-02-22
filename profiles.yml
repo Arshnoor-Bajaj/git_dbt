@@ -1,0 +1,13 @@
+git_dbt:
+  outputs:
+    dev:
+      account: zp00314.central-india.azure
+      database: AIRBNB
+      password: "Datafortune1@AB1"
+      role: ACCOUNTADMIN
+      schema: RAW
+      threads: 1
+      type: snowflake
+      user: ABTRYAGAIN
+      warehouse: COMPUTE_WH
+  target: dev
