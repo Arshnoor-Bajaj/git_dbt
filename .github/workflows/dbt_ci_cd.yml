@@ -7,7 +7,7 @@ on:
   pull_request:
     branches:
       - master
-  workflow_dispatch:  # ✅ Fixed indentation
+  workflow_dispatch:
 
 jobs:
   dbt-build-test:
@@ -25,12 +25,8 @@ jobs:
         run: |
           pip install dbt-snowflake
 
-      - name: Create profiles.yml
-        run: |
-          mkdir -p ~/.dbt
-          cat <<EOF > ~/.dbt/profiles.yml
-          ${{ secrets.PROFILES_YML }}
-          EOF
+      - name: Configure dbt Profiles
+        run: cp ./profiles/profiles.yml ~/.dbt/profiles.yml
 
       - name: Set up Snowflake credentials
         run: |
@@ -66,12 +62,8 @@ jobs:
         run: |
           pip install dbt-snowflake
 
-      - name: Create profiles.yml
-        run: |
-          mkdir -p ~/.dbt
-          cat <<EOF > ~/.dbt/profiles.yml
-          ${{ secrets.PROFILES_YML }}
-          EOF
+      - name: Configure dbt Profiles
+        run: cp ./profiles/profiles.yml ~/.dbt/profiles.yml
 
       - name: Set up Snowflake credentials
         run: |
