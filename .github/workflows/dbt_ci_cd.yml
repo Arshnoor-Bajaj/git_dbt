@@ -1,6 +1,6 @@
 name: dbt CI/CD
 
-on:
+on: #trigger on push, pull request, or manual workflow dispatch
   push:
     branches:
       - master
@@ -10,16 +10,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  dbt-build-test:
-    runs-on: ubuntu-latest
+  dbt-build-test: # built and tested before merging changes into production.
+    runs-on: ubuntu-latest #GitHub-hosted runners (even in windows it remians ubuntu)
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
-
+        uses: actions/checkout@v3 # Uses a GitHub action to clone the repository into the runner (GitHub’s virtual machine).
+        #Needed so that dbt files (models, profiles.yml, etc.) are available in the runner.
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: '3.9' #dbt is a Python-based tool
 
       - name: Install dbt and dependencies
         run: |
